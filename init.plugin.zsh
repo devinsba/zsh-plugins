@@ -10,5 +10,5 @@ PLUGINS=(
 )
 
 for PLUGIN in ${PLUGINS}; do
-    source "${CURRENT_DIR}/${PLUGIN}/load.plugin.zsh"
+    source "${CURRENT_DIR}/${PLUGIN}/init.plugin.zsh"
 done
