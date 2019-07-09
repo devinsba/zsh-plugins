@@ -5,6 +5,7 @@ PLUGINS=(
     "antibody-plugin-manager"
     "nvm"
     "rvm"
+    "sdkman"
 )
 
 for PLUGIN in ${PLUGINS}; do
