@@ -6,9 +6,15 @@ PLUGINS=(antibody-plugin-manager)
 function __import_plugin_directory() {
     (
         cd $1
-        source *.plugin.zsh 2>&1 || true
-        source *.zsh 2>&1 || true
-        source *.sh 2>&1 || true
+        for file in $(ls *.plugin.zsh); do
+            source "${file}"
+        done
+        for file in $(ls *.zsh); do
+            source "${file}"
+        done
+        for file in $(ls *.sh); do
+            source "${file}"
+        done
     )
 }
 
