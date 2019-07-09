@@ -1,4 +1,3 @@
 fpath+=( $(dirname ${(%):-%x}) )
 
-echo "HERE"
-echo $fpath
+autoload update_antibody_plugin_cache

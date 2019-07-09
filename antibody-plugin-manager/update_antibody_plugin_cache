@@ -1,2 +1,4 @@
+#!/usr/bin/env zsh
+
 PLUGINS_FILE="${XDG_CONFIG_HOME}/antibody/plugins.zsh"
 antibody bundle < "${XDG_CONFIG_HOME}/antibody/plugins.txt" > "${PLUGINS_FILE}"
