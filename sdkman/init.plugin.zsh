@@ -2,17 +2,18 @@
 
 export SDKMAN_DIR="${HOME}/.local/opt/sdkman"
 
-SDKMAN_GLOBALS=(`find "${SDKMAN_DIR}/candidates" -maxdepth 4 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+if [[ -d "${SDKMAN_DIR}" ]]; then
+    SDKMAN_GLOBALS=(`find "${SDKMAN_DIR}/candidates" -maxdepth 4 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-SDKMAN_GLOBALS+=("sdk")
+    SDKMAN_GLOBALS+=("sdk")
 
-function load_sdkman () {
-    echo "Loading SDKMAN..."
-    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && . "${SDKMAN_DIR}/bin/sdkman-init.sh"
-}
+    function load_sdkman () {
+        echo "Loading SDKMAN..."
+        [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && . "${SDKMAN_DIR}/bin/sdkman-init.sh"
+    }
 
-for cmd in "${SDKMAN_GLOBALS[@]}"; do
-    read -r -d '' global_func <<HERE
+    for cmd in "${SDKMAN_GLOBALS[@]}"; do
+        read -r -d '' global_func <<HERE
 
 function ${cmd}() {
     unset -f ${SDKMAN_GLOBALS}
@@ -22,5 +23,6 @@ function ${cmd}() {
 
 HERE
 
-    eval "${global_func}"
-done
+        eval "${global_func}"
+    done
+fi

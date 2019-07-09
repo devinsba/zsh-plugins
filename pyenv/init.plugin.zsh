@@ -1,21 +1,23 @@
 # Adapted from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs
 
 export PYENV_ROOT="${HOME}/.local/opt/pyenv"
-export PATH="${PYENV_DIR}/bin:${PATH}"
 
-PYTHON_GLOBALS=(`ls "${PYENV_ROOT}/shims/" | xargs -n1 basename | sort | uniq`)
+if [[ -d "${PYENV_ROOT}" ]]; then
+    export PATH="${PYENV_DIR}/bin:${PATH}"
 
-PYTHON_GLOBALS+=("pyenv")
+    PYTHON_GLOBALS=(`ls "${PYENV_ROOT}/shims/" | xargs -n1 basename | sort | uniq`)
 
-function load_pyenv () {
-    echo "Loading pyenv..."
-    if command -v pyenv; then
-        eval "$(pyenv init - zsh)"
-    fi
-}
+    PYTHON_GLOBALS+=("pyenv")
 
-for cmd in "${PYTHON_GLOBALS[@]}"; do
-    read -r -d '' global_func <<HERE
+    function load_pyenv () {
+        echo "Loading pyenv..."
+        if command -v pyenv; then
+            eval "$(pyenv init - zsh)"
+        fi
+    }
+
+    for cmd in "${PYTHON_GLOBALS[@]}"; do
+        read -r -d '' global_func <<HERE
 
 function ${cmd}() {
     unset -f ${PYTHON_GLOBALS}
@@ -25,5 +27,6 @@ function ${cmd}() {
 
 HERE
 
-    eval "${global_func}"
-done
+        eval "${global_func}"
+    done
+fi

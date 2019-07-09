@@ -2,18 +2,19 @@
 
 export NVM_DIR="${HOME}/.local/opt/nvm"
 
-NODE_GLOBALS=(`find "${NVM_DIR}/versions/node" -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+if [[ -d "${NVM_DIR}" ]]; then
+    NODE_GLOBALS=(`find "${NVM_DIR}/versions/node" -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
+    NODE_GLOBALS+=("node")
+    NODE_GLOBALS+=("nvm")
 
-function load_nvm () {
-    echo "Loading NVM..."
-    [[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
-}
+    function load_nvm () {
+        echo "Loading NVM..."
+        [[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
+    }
 
-for cmd in "${NODE_GLOBALS[@]}"; do
-    read -r -d '' global_func <<HERE
+    for cmd in "${NODE_GLOBALS[@]}"; do
+        read -r -d '' global_func <<HERE
 
 function ${cmd}() {
     unset -f ${NODE_GLOBALS}
@@ -23,5 +24,6 @@ function ${cmd}() {
 
 HERE
 
-    eval "${global_func}"
-done
+        eval "${global_func}"
+    done
+fi

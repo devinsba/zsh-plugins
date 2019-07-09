@@ -2,17 +2,18 @@
 
 export RVM_DIR="${HOME}/.local/opt/rvm"
 
-RUBY_GLOBALS=(`find "${RVM_DIR}/rubies" -maxdepth 3 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+if [[ -d "${RVM_DIR}" ]]; then
+    RUBY_GLOBALS=(`find "${RVM_DIR}/rubies" -maxdepth 3 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-RUBY_GLOBALS+=("rvm")
+    RUBY_GLOBALS+=("rvm")
 
-function load_rvm () {
-    echo "Loading RVM..."
-    [[ -s "${RVM_DIR}/scripts/rvm" ]] && . "${RVM_DIR}/scripts/rvm"
-}
+    function load_rvm () {
+        echo "Loading RVM..."
+        [[ -s "${RVM_DIR}/scripts/rvm" ]] && . "${RVM_DIR}/scripts/rvm"
+    }
 
-for cmd in "${RUBY_GLOBALS[@]}"; do
-    read -r -d '' global_func <<HERE
+    for cmd in "${RUBY_GLOBALS[@]}"; do
+        read -r -d '' global_func <<HERE
 
 function ${cmd}() {
     unset -f ${RUBY_GLOBALS}
@@ -22,5 +23,6 @@ function ${cmd}() {
 
 HERE
 
-    eval "${global_func}"
-done
+        eval "${global_func}"
+    done
+fi
