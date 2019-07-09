@@ -4,6 +4,7 @@ CURRENT_DIR=$(dirname ${ME})
 PLUGINS=(
     "antibody-plugin-manager"
     "nvm"
+    "pyenv"
     "rvm"
     "sdkman"
 )
