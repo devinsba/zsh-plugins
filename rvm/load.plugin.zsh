@@ -1,8 +1,8 @@
 # Adapted from: https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs
 
-export RVM_DIR="${HOME}/.local/share/rvm"
+export RVM_DIR="${HOME}/.local/opt/rvm"
 
-declare -a RUBY_GLOBALS=(`find "${RVM_DIR}/rubies" -maxdepth 3 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+RUBY_GLOBALS=(`find "${RVM_DIR}/rubies" -maxdepth 3 -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
 RUBY_GLOBALS+=("rvm")
 
