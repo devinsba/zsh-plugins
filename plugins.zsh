@@ -1,4 +1,4 @@
-ME="$(pwd)/${(%):-%x}"
+ME="${(%):-%x}"
 CURRENT_DIR=$(dirname ${ME})
 
 PLUGINS=(antibody-plugin-manager)
@@ -6,9 +6,9 @@ PLUGINS=(antibody-plugin-manager)
 function __import_plugin_directory() {
     (
         cd $1
-        source *.plugin.zsh
-        source *.zsh
-        source *.sh
+        source *.plugin.zsh 2>&1 || true
+        source *.zsh 2>&1 || true
+        source *.sh 2>&1 || true
     )
 }
 
