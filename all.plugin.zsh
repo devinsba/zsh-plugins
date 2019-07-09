@@ -6,7 +6,7 @@ PLUGINS=("antibody-plugin-manager")
 function __import_plugin_directory() {
     (
         cd $1
-        for file in $(find . -maxdepth 1 -name "*.plugin.zsh" -o -name "*.zsh" -o -name "*.sh"); do
+        for file in $(find . -maxdepth 1 -name "*.plugin.zsh"); do
             source "${file}"
         done
     )
