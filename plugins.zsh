@@ -1,18 +1,12 @@
 ME="${(%):-%x}"
 CURRENT_DIR=$(dirname ${ME})
 
-PLUGINS=(antibody-plugin-manager)
+PLUGINS=("antibody-plugin-manager")
 
 function __import_plugin_directory() {
     (
         cd $1
-        for file in $(ls *.plugin.zsh); do
-            source "${file}"
-        done
-        for file in $(ls *.zsh); do
-            source "${file}"
-        done
-        for file in $(ls *.sh); do
+        for file in $(find . -maxdepth 1 -name "*.plugin.zsh" -o -name "*.zsh" -o -name "*.sh"); do
             source "${file}"
         done
     )
