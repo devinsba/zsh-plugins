@@ -3,6 +3,7 @@
 export PYENV_ROOT="${HOME}/.local/opt/pyenv"
 
 if [[ -d "${PYENV_ROOT}" ]]; then
+    echo "Importing pyenv..."
     export PATH="${PYENV_DIR}/bin:${PATH}"
 
     PYTHON_GLOBALS=(`ls "${PYENV_ROOT}/shims/" | xargs -n1 basename | sort | uniq`)
