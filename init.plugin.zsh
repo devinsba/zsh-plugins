@@ -3,6 +3,7 @@ CURRENT_DIR=$(dirname ${ME})
 
 PLUGINS=(
     "antibody-plugin-manager"
+    "gvm"
     "nvm"
     "pyenv"
     "rvm"
