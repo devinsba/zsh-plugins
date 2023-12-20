@@ -2,7 +2,7 @@ ME="${(%):-%x}"
 CURRENT_DIR=$(dirname ${ME})
 
 PLUGINS=(
-    "antibody-plugin-manager"
+    "antidote-plugin-manager"
     "gvm"
     "nvm"
     "pyenv"
