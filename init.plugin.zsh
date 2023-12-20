@@ -13,3 +13,5 @@ PLUGINS=(
 for PLUGIN in ${PLUGINS}; do
     source "${CURRENT_DIR}/${PLUGIN}/init.plugin.zsh"
 done
+
+source "${CURRENT_DIR}/theme.zsh"
