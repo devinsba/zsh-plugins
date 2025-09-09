@@ -3,10 +3,8 @@ CURRENT_DIR=$(dirname ${ME})
 
 PLUGINS=(
     "antidote-plugin-manager"
-    "gvm"
-    "nvm"
+    "fnm"
     "pyenv"
-    "rvm"
     "sdkman"
 )
 
