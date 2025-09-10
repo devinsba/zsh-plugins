@@ -4,8 +4,8 @@ CURRENT_DIR=$(dirname ${ME})
 PLUGINS=(
     "antidote-plugin-manager"
     "fnm"
-    "pyenv"
     "sdkman"
+    "uv"
 )
 
 for PLUGIN in ${PLUGINS}; do
