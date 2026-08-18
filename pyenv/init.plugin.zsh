@@ -3,4 +3,6 @@
 export PYENV_ROOT="$HOME/.local/opt/pyenv"
 echo "Loading pyenv..."
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if command -v pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
