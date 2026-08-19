@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         unzip \
         zip \
+        procps \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -s /usr/bin/zsh tester
