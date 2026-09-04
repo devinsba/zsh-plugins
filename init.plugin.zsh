@@ -3,6 +3,7 @@ CURRENT_DIR=$(dirname ${ME})
 
 PLUGINS=(
     "antidote-plugin-manager"
+    "direnv"
     "fnm"
     "sdkman"
     "uv"

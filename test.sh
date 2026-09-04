@@ -2,8 +2,8 @@
 # Syntax-checks every zsh file in this repo, then sources init.plugin.zsh in
 # isolated fake environments (fake $HOME + $PATH, so nothing on the real
 # machine is touched or relied on) to make sure loading it doesn't error,
-# both when the wrapped tools (fnm, uv, sdkman) are absent and when they're
-# present.
+# both when the wrapped tools (direnv, fnm, uv, sdkman) are absent and when
+# they're present.
 #
 #   ./test.sh
 set -eu
@@ -44,7 +44,7 @@ run_load_test "no tools installed" "$ABSENT_HOME" "$ABSENT_PATH"
 echo "== load test: tools present (stubbed) =="
 PRESENT_HOME=$(mktemp -d)
 STUB_BIN=$(mktemp -d)
-for tool in fnm uv uvx; do
+for tool in direnv fnm uv uvx; do
     printf '#!/bin/sh\n:\n' > "${STUB_BIN}/${tool}"
     chmod +x "${STUB_BIN}/${tool}"
 done

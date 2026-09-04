@@ -17,6 +17,12 @@ WORKDIR /home/tester
 
 RUN mkdir -p "${HOME}/.local/bin" "${HOME}/.local/opt"
 
+# direnv -- installed into ~/.local/bin (not via apt) so it lands in the
+# same place as fnm/uv below and stays off the fixed /usr/bin:/bin the test
+# harness always appends to PATH; otherwise the "absent" load test could
+# never actually exclude it.
+RUN curl -sfL https://direnv.net/install.sh | bin_dir="${HOME}/.local/bin" bash
+
 # fnm
 RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "${HOME}/.local/bin" --skip-shell
 

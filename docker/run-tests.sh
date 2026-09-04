@@ -1,9 +1,9 @@
 #!/bin/sh
 # Runs inside the container built from docker/Dockerfile. /plugins is a
-# read-only mount of the repo; the container's real $HOME already has
-# fnm/uv/nvm/pyenv/sdkman/gvm/rvm actually installed (see Dockerfile), so
-# the "present" pass exercises each plugin against genuine tool output
-# instead of a stub.
+# read-only mount of the repo; the container's real $HOME (and, for
+# direnv, the system PATH) already has direnv/fnm/uv/nvm/pyenv/sdkman/gvm/rvm
+# actually installed (see Dockerfile), so the "present" pass exercises each
+# plugin against genuine tool output instead of a stub.
 #
 # Pass/fail is NOT the exit code of the sourced file: several plugins
 # (nvm, rvm, gvm, sdkman) end in a `[ -s file ] && cmd` guard, whose exit
