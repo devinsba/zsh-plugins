@@ -7,6 +7,7 @@ PLUGINS=(
     "fnm"
     "sdkman"
     "uv"
+    "pyenv"
 )
 
 for PLUGIN in ${PLUGINS}; do
