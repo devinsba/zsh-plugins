@@ -5,9 +5,15 @@ PLUGINS=(
     "antidote-plugin-manager"
     "direnv"
     "fnm"
+    "google-cloud-sdk"
+    "gvm"
+    "lmstudio"
+    "nvm"
+    "pyenv"
+    "remctl"
+    "rvm"
     "sdkman"
     "uv"
-    "pyenv"
 )
 
 for PLUGIN in ${PLUGINS}; do
